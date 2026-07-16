@@ -1,0 +1,55 @@
+mkdir infra-devops
+cd infra-devops
+git init
+mkdir terraform
+mkdir ansible
+mkdir app
+touch terraform/provider.tf
+touch terraform/main.tf
+touch terraform/security_group.tf
+touch terraform/variables.tf
+touch terraform/outputs.tf
+touch ansible/inventory
+touch ansible/docker-install.yml
+touch ansible/deploy-app.yml
+touch app/index.html
+touch app/Dockerfile
+touch Jenkinsfile
+touch Jenkinsfile-App
+touch README.md
+sudo apt install git -y
+git --version
+git add .
+git commit -m "Initial project structure"
+git branch -M main
+git remote add origin https://github.com/<YOUR_GITHUB_USERNAME>/infra-devops.git
+git push -u origin main
+sudo apt install awscli -y
+sudo apt install ansible -y
+sudo apt install docker.io -y
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo usermod -aG docker ubuntu
+newgrp docker
+in tools for git path -- /usr/bin/git
+sudo su - jenkins
+sudo usermod -aG docker jenkins  --> allow jenkins to user docker
+sudo systemctl restart jenkins
+which terraform --> if disent riturn /usr/local/bin/terraform then run 
+sudo mv terraform /usr/local/bin/
+
+now commands for config terraform.pem-----------------
+sudo mkdir -p /var/lib/jenkins/.ssh
+sudo nano /var/lib/jenkins/.ssh/terraform.pem
+sudo chown -R jenkins:jenkins /var/lib/jenkins/.ssh
+
+# Set correct permissions
+sudo chmod 700 /var/lib/jenkins/.ssh
+sudo chmod 400 /var/lib/jenkins/.ssh/terraform.pem
+-------------------------------------------------------------
+
+
+test connictivity------------
+sudo su - jenkins
+ssh -i ~/.ssh/terraform.pem ubuntu@<EC2_PUBLIC_IP>
+----------------------------------
