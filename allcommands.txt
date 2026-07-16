@@ -53,3 +53,7 @@ test connictivity------------
 sudo su - jenkins
 ssh -i ~/.ssh/terraform.pem ubuntu@<EC2_PUBLIC_IP>
 ----------------------------------
+
+
+
+cd /var/lib/jenkins/workspace/infra-pipeline/terraform   ----------> path to go for destroy 
